@@ -4,13 +4,26 @@
         <title>Zag</title>
         <link>https://github.com/kindlyops/zag-releases/releases</link>
         <item>
+            <title>0.3.0</title>
+            <pubDate>Thu, 17 Sep 2026 13:43:49 -0400</pubDate>
+            <link>https://github.com/kindlyops/zag-releases/releases</link>
+            <sparkle:version>7</sparkle:version>
+            <sparkle:shortVersionString>0.3.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.3.0/Zag-0.3.0.zip" length="6532575" type="application/octet-stream" sparkle:edSignature="TKqS0kQKRwC+ewPVFkdxE8nBR2llN31/4oBS1CRczPjehkZDHmeqSnhmEtQTHb1ZgLNTvGYD8ad9NaECFdoYCw=="/>
+            <sparkle:deltas>
+                <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.3.0/Zag7-6.delta" sparkle:deltaFrom="6" length="615346" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="P+sNsRih7oFYiYMZ8dEpkpmxitufIsddWOzPwWx8dAajSDbajpNUuOaU27cCjwO/mBo4LnELfwXsIc77zsQfDw=="/>
+                <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.3.0/Zag7-5.delta" sparkle:deltaFrom="5" length="628514" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="Z3a70MSyOlP/0hVi0es0aqIzLFdNK+N5Ff7fc844iFIw8l093CcasTMjlrwn20uyo1YuKDCPyaFI8zk+304qAw=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>0.2.0</title>
             <pubDate>Thu, 17 Sep 2026 00:27:21 -0400</pubDate>
             <link>https://github.com/kindlyops/zag-releases/releases</link>
             <sparkle:version>6</sparkle:version>
             <sparkle:shortVersionString>0.2.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.2.0/Zag-0.2.0.zip" length="6486055" type="application/octet-stream" sparkle:edSignature="XGPpEiZULtz7tOo1OECh7cVszdEoKDKNWSDRhRLIacxJ+Z2bbJTV2UiHQG+58C2/u9QMjy9SXbcP9lxOaRxTAA=="/>
+            <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.3.0/Zag-0.2.0.zip" length="6486055" type="application/octet-stream" sparkle:edSignature="XGPpEiZULtz7tOo1OECh7cVszdEoKDKNWSDRhRLIacxJ+Z2bbJTV2UiHQG+58C2/u9QMjy9SXbcP9lxOaRxTAA=="/>
             <sparkle:deltas>
                 <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.2.0/Zag6-5.delta" sparkle:deltaFrom="5" length="328654" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="w2u6FCdIH4/5GZInZKT4kupxL5EBQqijWlCUDxtAM2zBa225Cv/s9dbSSau36fk21EB/acZDVwyKVXa6b23ZAw=="/>
             </sparkle:deltas>
@@ -22,7 +35,7 @@
             <sparkle:version>5</sparkle:version>
             <sparkle:shortVersionString>0.1.4</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.2.0/Zag-0.1.4.zip" length="6492000" type="application/octet-stream" sparkle:edSignature="MuxtZxLGmoRANLfwTDFOn+lHaG6EuWsz5IJWjk39zcFsMZxzqJxLwiSivOLyEayN9vdWnt+/naSnfTfHfwxECg=="/>
+            <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.3.0/Zag-0.1.4.zip" length="6492000" type="application/octet-stream" sparkle:edSignature="MuxtZxLGmoRANLfwTDFOn+lHaG6EuWsz5IJWjk39zcFsMZxzqJxLwiSivOLyEayN9vdWnt+/naSnfTfHfwxECg=="/>
         </item>
     </channel>
 </rss>
