@@ -1,7 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
-  <channel>
-    <title>Zag</title>
-    <link>https://github.com/kindlyops/zag-releases/releases</link>
-  </channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>Zag</title>
+        <link>https://github.com/kindlyops/zag-releases/releases</link>
+        <item>
+            <title>0.1.4</title>
+            <pubDate>Wed, 16 Sep 2026 21:07:30 -0400</pubDate>
+            <link>https://github.com/kindlyops/zag-releases/releases</link>
+            <sparkle:version>5</sparkle:version>
+            <sparkle:shortVersionString>0.1.4</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.1.4/Zag-0.1.4.zip" length="6492000" type="application/octet-stream" sparkle:edSignature="MuxtZxLGmoRANLfwTDFOn+lHaG6EuWsz5IJWjk39zcFsMZxzqJxLwiSivOLyEayN9vdWnt+/naSnfTfHfwxECg=="/>
+        </item>
+    </channel>
 </rss>
