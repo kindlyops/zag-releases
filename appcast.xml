@@ -4,13 +4,29 @@
         <title>Zag</title>
         <link>https://github.com/kindlyops/zag-releases/releases</link>
         <item>
+            <title>0.7.2</title>
+            <pubDate>Sun, 27 Sep 2026 21:26:42 -0400</pubDate>
+            <link>https://github.com/kindlyops/zag-releases/releases</link>
+            <sparkle:version>20</sparkle:version>
+            <sparkle:shortVersionString>0.7.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.7.2/Zag-0.7.2.zip" length="6617661" type="application/octet-stream" sparkle:edSignature="3acFGhVtVEt1M+ikEPtWAKFZSwYdaURgPTBhNyWd21bQLYFCMiI7sJC5CKY5LITx/EcCgF3t/N0LsxbwwmARBA=="/>
+            <sparkle:deltas>
+                <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.7.2/Zag20-19.delta" sparkle:deltaFrom="19" length="416050" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="I0prWJL/8a1w7glQ2S0ahCf1/sg6X8W/29iN+MTn5TexwDCLcQPyDgtVNChZiF5azWm07UHXZbYTXl06IoipDg=="/>
+                <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.7.2/Zag20-18.delta" sparkle:deltaFrom="18" length="436894" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="sdxL6UrieoywDnwdFN7qptZfcKn+Q5531pxvMvVTDWgHGaSiuTnCVGc2gK2j0GLcf/yaEYzA4iZgBtIgINKHAQ=="/>
+                <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.7.2/Zag20-17.delta" sparkle:deltaFrom="17" length="502298" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="s7AcYL5Zj0In+ZAvmXBPskQKspGM8u6dPCUmJ+y0C4HWiDd6P/V1pp5Wb9gF3dg9f7EqtKlFez16IpwJR29vAw=="/>
+                <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.7.2/Zag20-16.delta" sparkle:deltaFrom="16" length="572862" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="SDD1BDgixpRD28lgU6dnkA5i1knwt/9jfRLJX4k8i+OCekj/oVrzYgScWRuThaUAN3hCdPptLtkz3geIzQDpBA=="/>
+                <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.7.2/Zag20-15.delta" sparkle:deltaFrom="15" length="596094" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="6xj1S2UHh4rNNxXcTIE8WQKMKxqQk4q4hJ5yJ7oLqE43ByLCUYqakkDWTQ++EcaipfqHeo4ypb9ksRts4EDKBA=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>0.7.1</title>
             <pubDate>Sun, 27 Sep 2026 17:06:49 -0400</pubDate>
             <link>https://github.com/kindlyops/zag-releases/releases</link>
             <sparkle:version>19</sparkle:version>
             <sparkle:shortVersionString>0.7.1</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.7.1/Zag-0.7.1.zip" length="6597834" type="application/octet-stream" sparkle:edSignature="BbXT6A+sTaZVUDrFW5gx+520atuliOXA0BA/yroJqa5D/pDT+7Mio5GUY6jN4ymj1+19jmAc1DruxqEDMm/jAw=="/>
+            <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.7.2/Zag-0.7.1.zip" length="6597834" type="application/octet-stream" sparkle:edSignature="BbXT6A+sTaZVUDrFW5gx+520atuliOXA0BA/yroJqa5D/pDT+7Mio5GUY6jN4ymj1+19jmAc1DruxqEDMm/jAw=="/>
             <sparkle:deltas>
                 <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.7.1/Zag19-18.delta" sparkle:deltaFrom="18" length="337350" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="G61gtD6KjjtiDi/rQkogcTDj8eYSRfe/Evvo2RRBFkyk32dWnpIBaRiZdH3OVMauS45mYd6AZfGYJLfDBKUtAA=="/>
                 <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.7.1/Zag19-17.delta" sparkle:deltaFrom="17" length="399854" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="nCcLvne5oGq3fJOaruCiYlzrnweGFxXfTKIVYJLwA0UyhgKQ+GhjEIapuaaW+S0VIEdLhOSujz2giMVMEubBCw=="/>
@@ -26,29 +42,13 @@
             <sparkle:version>18</sparkle:version>
             <sparkle:shortVersionString>0.7.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.7.1/Zag-0.7.0.zip" length="6594243" type="application/octet-stream" sparkle:edSignature="Zu7mMJTNQm43VX7JC/0m7Xaf9c2i5+9NY2r5x3EsodNsjZvScSS0okbZ+6y55cerzybfvrgzFhbwCL4A6PNaBQ=="/>
+            <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.7.2/Zag-0.7.0.zip" length="6594243" type="application/octet-stream" sparkle:edSignature="Zu7mMJTNQm43VX7JC/0m7Xaf9c2i5+9NY2r5x3EsodNsjZvScSS0okbZ+6y55cerzybfvrgzFhbwCL4A6PNaBQ=="/>
             <sparkle:deltas>
                 <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.7.0/Zag18-17.delta" sparkle:deltaFrom="17" length="371842" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="i0y9M4Dy/nXFBhxaM87xqaxXDhgHyasLXZ8R8sBkVcRZ4TX+bf8lA5BktSboB0qMLe+zdumWa1/ds90Z706WCw=="/>
                 <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.7.0/Zag18-16.delta" sparkle:deltaFrom="16" length="458026" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="t/Rq8TLmc9v718pgMpDx/JUE0BdXIBtcZ570DmvXIoMwXY4O0ucvNftfflglIilmALuxrT8yCYEx4Wzx/ge+Bw=="/>
                 <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.7.0/Zag18-15.delta" sparkle:deltaFrom="15" length="481530" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="mvFiewlpK5jqSf528ZtvuNTrKwav1n+LYETLyqbAbsIWz6C1XNCCTsMGZfbmSuN3GE4LY4MGRugqdRbGvOfZCg=="/>
                 <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.7.0/Zag18-12.delta" sparkle:deltaFrom="12" length="558066" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="ax8ifiRFLrhv3L/PfqD8YMDKlyDeXCCPcW1Ym8FhbbH8vgLxDbsE3SaFQtND6W8iA8JFOP0tXJFIHTqxIT1wDA=="/>
                 <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.7.0/Zag18-11.delta" sparkle:deltaFrom="11" length="578054" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="H+ctvD5QxIlgDhYbejl0SteUcITKzbhLkHsmHAn+Mb6wPQvgrpUfQ4WdaThD+LAamrWNxpvrQcmbgTuFsp6pDQ=="/>
-            </sparkle:deltas>
-        </item>
-        <item>
-            <title>0.6.0</title>
-            <pubDate>Tue, 22 Sep 2026 12:35:45 -0400</pubDate>
-            <link>https://github.com/kindlyops/zag-releases/releases</link>
-            <sparkle:version>17</sparkle:version>
-            <sparkle:shortVersionString>0.6.0</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.7.1/Zag-0.6.0.zip" length="6586299" type="application/octet-stream" sparkle:edSignature="q/KKO1OSal7+/WR4aMSJG4XemHi3Mei0M5/cV6mz+o+08ZqXfToK3Xin1pkzZ59ah+WrpVfSfMWyy4Py6RtRCg=="/>
-            <sparkle:deltas>
-                <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.6.0/Zag17-16.delta" sparkle:deltaFrom="16" length="431750" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="xqEJqHx+Q2MTZRxTIbOi5NW0Csmw18Fxu6LO8vgywmmzQOQO97HFtUwzCgayaU0Ftd/iZf+AutmEucNDtSXiBA=="/>
-                <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.6.0/Zag17-15.delta" sparkle:deltaFrom="15" length="466022" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="lPmWDdxdoXwrmMSmcyHfurFOT6cGV6P8kvkPMLEXakdHKtzWgDyfnDuZQYKRa+Uo1QULh8xMtBFpJeYaEVTlDA=="/>
-                <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.6.0/Zag17-12.delta" sparkle:deltaFrom="12" length="537254" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="/IpZBFxQrkV345erqg6TRGMe0lRLgn1XbjjwNKuVnU9fGc0U3SIR35wI08WPPF+ZaIPjQJWR5g3kRngcJ/pkBQ=="/>
-                <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.6.0/Zag17-11.delta" sparkle:deltaFrom="11" length="566850" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="3D5jgDWNGdGiabmG3RSZSjPpr58YkYYCJYsdDu9YfKiE+UyhB2cABpXTU9A+/iUQhL7ethDdx5dxo8GLwwUWCA=="/>
-                <enclosure url="https://github.com/kindlyops/zag-releases/releases/download/v0.6.0/Zag17-8.delta" sparkle:deltaFrom="8" length="561806" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="yc183UifrL3djVlM9awNNDwSLoPW8mXovDkeIEZCyVLhy+9m/vPiGnZLuPCByQViIzOL825vm0/1DWv0G6x5Bg=="/>
             </sparkle:deltas>
         </item>
     </channel>
