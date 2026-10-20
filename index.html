@@ -1,1 +1,756 @@
-<!doctype html><title>Zag releases</title><p>See <a href="https://github.com/kindlyops/zag-releases/releases">GitHub Releases</a>.
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>zag</title>
+<meta name="description" content="zag runs an LLM gateway on your Mac. Claude Code, Codex, OpenCode, Posit Assistant and pi send their requests through it, and you decide where each one goes.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="zag">
+<meta property="og:description" content="Every coding agent, through one gateway on your Mac. Route, watch and budget every request.">
+<meta property="og:image" content="https://kindlyops.github.io/zag-releases/assets/og.jpg">
+<meta property="og:url" content="https://kindlyops.github.io/zag-releases/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="assets/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+/* Layout: a risograph print. The app's lagoon art is the hero, headlines are
+   printed in two inks a little out of register, and the panels sit on the
+   paper with flat, offset ink shadows instead of blurred ones. */
+:root {
+  color-scheme: light;
+  /* Inks sampled from the Zag.app icon and its lagoon art. */
+  --paper: #f4eede;      /* the icon's own fill */
+  --paper-deep: #ebe2cb; /* panels */
+  --rule: #d6caa9;       /* hairlines on the paper */
+  --ink: #1e2a4a;        /* the tug's hull: text */
+  --ink-soft: #485472;   /* secondary text */
+  --pink: #e2546a;       /* the tug's stripes: misregistration, labels */
+  --blue: #1f6797;       /* the lagoon, darkened for links */
+  --lagoon: #3b8cc0;     /* the lagoon */
+  --sun: #f08a24;        /* the sun: primary action */
+  --yellow: #f5cf3a;     /* the sky at the horizon */
+  --palm: #2e7d3a;       /* the palms: yes */
+  --console: #18181b;    /* the rules UI's own dark */
+  --display: "Archivo", "Arial Black", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Helvetica Neue", system-ui, -apple-system, sans-serif;
+  --mono: "IBM Plex Mono", "SF Mono", Menlo, ui-monospace, monospace;
+  --measure: 66ch;
+  --gutter-l: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--blue); text-underline-offset: 0.18em; text-decoration-thickness: 1.5px; }
+a:hover { color: var(--pink); }
+:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; border-radius: 3px; }
+code { font-family: var(--mono); font-size: 0.9em; }
+
+.wrap {
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-left: var(--gutter-l);
+  padding-right: var(--gutter-r);
+}
+
+/* Small capitals in mono, the way a print shop labels a plate. */
+.label {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--pink);
+}
+
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+/* Two inks out of register: the pink plate sits a little right and down. */
+.print {
+  font-family: var(--display);
+  font-weight: 850;
+  font-stretch: 125%;
+  color: var(--ink);
+  text-shadow: 0.045em 0.035em 0 rgba(226, 84, 106, 0.85);
+  letter-spacing: -0.01em;
+}
+h2.print { font-size: clamp(1.9rem, 4.2vw, 2.9rem); line-height: 1.02; }
+h3 { font-size: 1.125rem; font-weight: 600; line-height: 1.3; }
+p { margin: 0; }
+
+/* ---------- Hero ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-block: 18px;
+}
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
+.brand img { width: 44px; height: 44px; }
+.brand span { font-family: var(--display); font-weight: 900; font-stretch: 125%; font-size: 1.7rem; line-height: 1; }
+.topbar nav { display: flex; gap: 20px; flex-wrap: wrap; }
+.topbar nav a { color: var(--ink); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+.topbar nav a:hover { color: var(--pink); }
+
+/* The art is the plate; the headline is printed into its sky, left of the sun. */
+.hero-top { position: relative; }
+.plate {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 10px 10px 0 var(--lagoon);
+  background: #f6e9b8;
+}
+.plate img { display: block; width: 100%; height: auto; }
+.plate-copy {
+  position: absolute;
+  left: clamp(20px, 4vw, 48px);
+  top: clamp(20px, 4vw, 44px);
+  width: 68%;
+}
+.hero h1 {
+  font-size: clamp(1.9rem, 4.1vw, 3.3rem);
+  line-height: 0.98;
+}
+.hero h1 em { font-style: normal; color: var(--blue); text-shadow: 0.045em 0.035em 0 rgba(245, 207, 58, 0.95); }
+.hero-under {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 32px 48px;
+  align-items: start;
+  padding-block: 40px 8px;
+}
+.lede { font-size: 1.2rem; max-width: 56ch; }
+.ctas { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 2px solid var(--ink);
+  color: var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  transition: transform 80ms ease, box-shadow 80ms ease;
+}
+.btn:hover { color: var(--ink); transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+.btn-primary { background: var(--sun); }
+.btn-ghost { background: var(--paper); }
+@media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+.req { margin-top: 14px; color: var(--ink-soft); font-size: 0.95rem; }
+
+/* ---------- The Live tab ---------- */
+.console { padding-block: clamp(48px, 7vw, 88px) clamp(48px, 7vw, 88px); }
+.console .section-head { margin-bottom: 28px; }
+.shot {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid var(--ink);
+  box-shadow: 10px 10px 0 var(--pink);
+  background: var(--console);
+}
+.shot img { display: block; width: 100%; height: auto; }
+.pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--yellow);
+  color: var(--ink);
+  font: 600 0.82rem/1 var(--mono);
+  box-shadow: 0 0 0 3px var(--ink);
+}
+/* Each pin sits just after the heading of the panel it names. */
+.pin-1 { left: 11%; top: 24.3%; }
+.pin-2 { left: 14%; top: 34.2%; }
+.pin-3 { left: 10.6%; top: 59%; }
+.pin-4 { left: 10.4%; top: 71.2%; }
+.legend {
+  list-style: none;
+  margin: 30px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px 28px;
+}
+.legend li { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 12px; align-items: start; }
+.legend .n {
+  width: 30px; height: 30px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--yellow); border: 2px solid var(--ink);
+  font: 600 0.8rem/1 var(--mono);
+}
+.legend b { display: block; font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; }
+.legend span { color: var(--ink-soft); font-size: 0.97rem; }
+
+/* ---------- Sections ---------- */
+section.band { padding-block: clamp(56px, 8vw, 104px); border-top: 2px solid var(--ink); }
+/* A band printed on halftone: the lagoon's dots, very light. */
+section.dots {
+  background-color: var(--paper);
+  background-image: radial-gradient(rgba(59, 140, 192, 0.16) 1.1px, transparent 1.3px);
+  background-size: 7px 7px;
+}
+.section-head { display: grid; gap: 14px; max-width: var(--measure); margin-bottom: 40px; }
+.section-head p { color: var(--ink-soft); font-size: 1.125rem; }
+
+/* The request path. */
+.path {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.5fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  gap: 14px;
+}
+.node {
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  padding: 18px;
+  background: var(--paper);
+  min-width: 0;
+  box-shadow: 6px 6px 0 var(--yellow);
+}
+.node.core { background: var(--ink); color: var(--paper); box-shadow: 6px 6px 0 var(--pink); }
+.node.core .label { color: var(--yellow); }
+.node ul, .node ol { margin: 10px 0 0; padding: 0; display: grid; gap: 8px; }
+.node ul { list-style: none; }
+.node ol { padding-left: 1.3em; }
+.node li { font-size: 0.97rem; }
+.node .dev { font-family: var(--mono); font-size: 0.88rem; font-weight: 600; }
+.node.core li::marker { color: var(--yellow); font-family: var(--mono); }
+.node.core code { color: var(--yellow); }
+.arrow { align-self: center; color: var(--pink); font: 600 1.6rem/1 var(--mono); }
+.path-note { margin-top: 26px; color: var(--ink-soft); max-width: var(--measure); }
+
+/* Features: two columns of plain text groups. */
+.features { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 44px 56px; }
+.feature { display: grid; gap: 10px; align-content: start; min-width: 0; }
+.feature h3 { font-family: var(--display); font-stretch: 112%; font-weight: 800; font-size: 1.2rem; }
+.feature p { color: var(--ink-soft); }
+.feature p strong { color: var(--ink); font-weight: 600; }
+.feature code, .os code, .under code { background: var(--paper-deep); padding: 1px 5px; border-radius: 3px; color: var(--ink); }
+.cmd {
+  font-family: var(--mono);
+  font-size: 0.88rem;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 6px;
+  padding: 10px 14px;
+  overflow-x: auto;
+  white-space: pre;
+}
+.cmd .p { color: var(--yellow); user-select: none; }
+
+/* Battles: the command and the copy beside a real terminal readout. */
+.battle { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 48px; align-items: start; margin-bottom: 40px; }
+.battle-shot { box-shadow: 10px 10px 0 var(--lagoon); }
+.term { margin-top: 40px; }
+.battle-copy { display: grid; gap: 16px; min-width: 0; }
+.battle-copy p { color: var(--ink-soft); }
+.battle-copy p strong { color: var(--ink); font-weight: 600; }
+.term { margin-inline: 0; margin-bottom: 0; min-width: 0; border: 2px solid var(--ink); border-radius: 8px; background: var(--ink); box-shadow: 10px 10px 0 var(--sun); overflow: hidden; }
+.term-bar { display: flex; gap: 7px; padding: 10px 14px; border-bottom: 1px solid #34406a; }
+.term-bar span { width: 11px; height: 11px; border-radius: 50%; background: #3a4670; }
+.term pre { margin: 0; padding: 16px 18px; overflow-x: auto; font: 0.8rem/1.6 var(--mono); color: var(--paper); }
+.term pre b { color: var(--yellow); font-weight: 600; }
+.term .p { color: var(--yellow); user-select: none; }
+.term figcaption { padding: 12px 18px 16px; font-size: 0.85rem; color: #c9cee0; border-top: 1px solid #34406a; }
+.battle-notes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin-top: 48px; }
+
+/* Measured: the decide chart. */
+.measured { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.3fr); gap: 48px; align-items: center; }
+.measured .copy { display: grid; gap: 16px; }
+.measured .copy p { color: var(--ink-soft); }
+.chart { background: var(--paper); border: 2px solid var(--ink); border-radius: 8px; padding: 18px 18px 12px; min-width: 0; overflow-x: auto; box-shadow: 8px 8px 0 var(--lagoon); margin: 0; }
+.chart svg { display: block; width: 100%; min-width: 520px; height: auto; }
+.chart text { font-family: var(--mono); fill: var(--ink-soft); }
+.chart .axis { stroke: var(--ink-soft); }
+.chart .grid { stroke: var(--rule); }
+.chart .cost { stroke: var(--ink); stroke-width: 2.5; fill: none; }
+.chart .deadline { stroke: var(--pink); stroke-width: 2; stroke-dasharray: 6 5; }
+.chart .cut { fill: rgba(245, 207, 58, 0.35); }
+.chart .real { fill: var(--sun); stroke: var(--ink); stroke-width: 1.5; }
+.chart .strong { fill: var(--ink); }
+.chart-note { margin-top: 10px; font-size: 0.85rem; color: var(--ink-soft); }
+
+/* Design notes: plain blocks with a lagoon rule. */
+.design { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+.note { border-left: 4px solid var(--lagoon); padding: 2px 0 2px 18px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.note h3 { font-family: var(--display); font-stretch: 112%; font-weight: 800; font-size: 1.15rem; }
+.note p { color: var(--ink-soft); }
+
+/* Tables. */
+.tables { display: grid; gap: 40px; }
+.table-wrap { overflow-x: auto; border: 2px solid var(--ink); border-radius: 8px; background: var(--paper); }
+table { width: 100%; border-collapse: collapse; min-width: 640px; }
+caption { text-align: left; padding: 14px 18px 0; font-family: var(--display); font-stretch: 112%; font-weight: 800; font-size: 1.15rem; }
+th, td { text-align: left; padding: 12px 18px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+thead th { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+td { color: var(--ink-soft); font-size: 0.97rem; }
+td:first-child { color: var(--ink); font-family: var(--mono); font-weight: 600; font-size: 0.9rem; white-space: nowrap; }
+
+/* Install. */
+.install { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+.os { border: 2px solid var(--ink); border-radius: 8px; padding: 24px; display: grid; gap: 14px; align-content: start; min-width: 0; background: var(--paper); box-shadow: 8px 8px 0 var(--yellow); }
+.os h3 { font-family: var(--display); font-stretch: 112%; font-weight: 800; font-size: 1.2rem; }
+.os ol { margin: 0; padding-left: 1.3em; display: grid; gap: 8px; color: var(--ink-soft); }
+.os ol strong { color: var(--ink); }
+.os .cmd { margin-top: 2px; }
+.under { margin-top: 30px; color: var(--ink-soft); max-width: var(--measure); }
+
+footer { border-top: 2px solid var(--ink); padding-block: 36px calc(36px + env(safe-area-inset-bottom, 0px)); color: var(--ink-soft); font-size: 0.95rem; }
+footer .wrap { display: flex; justify-content: space-between; gap: 16px 28px; flex-wrap: wrap; }
+footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
+
+@media (max-width: 900px) {
+  .plate-copy { position: static; width: auto; padding: 0 0 22px; }
+  .plate { box-shadow: 6px 6px 0 var(--lagoon); }
+  .hero-top { display: flex; flex-direction: column-reverse; }
+  .hero-under { grid-template-columns: minmax(0, 1fr); }
+  .legend { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .path { grid-template-columns: minmax(0, 1fr); }
+  .arrow { justify-self: center; transform: rotate(90deg); }
+  .measured, .features, .design, .install, .battle, .battle-notes { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 560px) {
+  .legend { grid-template-columns: minmax(0, 1fr); }
+  .pin { width: 22px; height: 22px; font-size: 0.66rem; box-shadow: 0 0 0 2px var(--ink); }
+  .topbar nav { gap: 14px; }
+  .shot { box-shadow: 6px 6px 0 var(--pink); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="#top" aria-label="zag home"><img src="assets/icon-256.png" alt="" width="44" height="44"><span>zag</span></a>
+      <nav aria-label="Sections">
+        <a href="#how">How it works</a>
+        <a href="#battles">Battles</a>
+        <a href="#features">Features</a>
+        <a href="#design">Design</a>
+        <a href="#install">Install</a>
+      </nav>
+    </div>
+
+    <div class="hero-top" id="top">
+      <div class="plate">
+        <picture>
+          <source type="image/webp" srcset="assets/lagoon-1200.webp 1200w, assets/lagoon-1800.webp 1800w" sizes="(max-width: 1120px) 100vw, 1088px">
+          <img src="assets/lagoon-1200.jpg" width="1200" height="750" alt="A risograph print of a tugboat pushing a loaded barge across a lagoon at sunrise, with palms on the far shore and gulls overhead.">
+        </picture>
+      </div>
+      <div class="plate-copy">
+        <h1 class="print">Every coding agent, <em>through one gateway.</em></h1>
+      </div>
+    </div>
+
+    <div class="hero-under">
+      <p class="lede">zag runs an LLM gateway on your Mac. Claude Code, Codex, OpenCode, Posit Assistant and pi send their requests through it. You choose which account and model answers each one, watch every request as it streams, and cap what each agent spends.</p>
+      <div>
+        <div class="ctas">
+          <a class="btn btn-primary" href="https://github.com/kindlyops/zag-releases/releases/latest">Download for Mac</a>
+          <a class="btn btn-ghost" href="#design">How it is built</a>
+        </div>
+        <p class="req">macOS 14 or later on Apple silicon. The command-line tool is one file; the menu bar app updates itself.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="console">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="label">The Live tab</span>
+        <h2 class="print">See every request while it streams</h2>
+        <p>Four agents, three projects and three local models, through one gateway. The screenshot is real: zag v0.35.0 serving Ollama on a Mac.</p>
+      </div>
+      <div class="shot">
+        <picture>
+          <source type="image/webp" srcset="assets/live-1200.webp 1200w, assets/live-2000.webp 2000w" sizes="(max-width: 1120px) 100vw, 1088px">
+          <img src="assets/live-1200.jpg" width="1200" height="1125" alt="The zag rules UI on its Live tab. Tiles show requests in flight, tokens per second, spend in the last minute and failures. A chart shows the last 60 seconds of streamed tokens. The provider strip shows Ollama busy. The request table lists claude, codex, opencode and pi requests with their project, route, time and tokens.">
+        </picture>
+        <span class="pin pin-1" aria-hidden="true">1</span>
+        <span class="pin pin-2" aria-hidden="true">2</span>
+        <span class="pin pin-3" aria-hidden="true">3</span>
+        <span class="pin pin-4" aria-hidden="true">4</span>
+      </div>
+      <ol class="legend" aria-label="What the Live tab shows">
+        <li><span class="n">1</span><div><b>Now</b><span>Requests in flight, tokens a second, what the last minute cost, and what failed.</span></div></li>
+        <li><span class="n">2</span><div><b>Last 60 seconds</b><span>Streamed tokens and finished requests, second by second.</span></div></li>
+        <li><span class="n">3</span><div><b>Providers</b><span>Each provider's dot beats once per streamed chunk.</span></div></li>
+        <li><span class="n">4</span><div><b>Requests</b><span>Agent, project and route for each request, with its progress, tokens and cost.</span></div></li>
+      </ol>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="band dots" id="how" aria-labelledby="how-title">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="label">How it works</span>
+        <h2 class="print" id="how-title">Agents talk to zag. zag talks to the providers.</h2>
+        <p>Start an agent with <code>zag run</code> once, and it sends every request to the gateway on your Mac instead of straight to a provider.</p>
+      </div>
+      <div class="path">
+        <div class="node">
+          <span class="label">Agents</span>
+          <ul>
+            <li><span class="dev">zag run claude</span></li>
+            <li><span class="dev">zag run codex</span></li>
+            <li><span class="dev">zag run opencode</span></li>
+            <li><span class="dev">zag run pa</span></li>
+            <li><span class="dev">zag run pi</span></li>
+          </ul>
+        </div>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div class="node core">
+          <span class="label">zag serve, on 127.0.0.1</span>
+          <ol>
+            <li>Checks the agent's virtual key and its monthly budget.</li>
+            <li>Runs the Python hooks: the rules route, reject or tag the request, or ask a local model to decide.</li>
+            <li>Tries the route, then each fallback in turn, translating the request into the protocol that provider speaks.</li>
+            <li>Translates the reply back chunk by chunk, records tokens, cost and the rule's decision, and feeds the Live tab.</li>
+          </ol>
+        </div>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div class="node">
+          <span class="label">Accounts</span>
+          <ul>
+            <li>Claude subscription</li>
+            <li>ChatGPT sign-in</li>
+            <li>OpenRouter</li>
+            <li>Amazon Bedrock</li>
+            <li>Ollama, on this Mac</li>
+            <li>Posit AI Pass</li>
+            <li>Anthropic and OpenAI keys</li>
+          </ul>
+        </div>
+      </div>
+      <p class="path-note">The gateway listens on 127.0.0.1. An agent only ever holds its virtual key: zag removes the agent's own provider keys and endpoints from its environment, so it cannot go around the gateway, and the real credentials stay with zag.</p>
+    </div>
+  </section>
+
+  <section class="band" id="battles" aria-labelledby="battles-title">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="label">Battles</span>
+        <h2 class="print" id="battles-title">Same model, two providers. Which one is faster?</h2>
+        <p>The same model can be sold by several providers, and they do not answer at the same speed. A battle measures the difference on your own work, not on a benchmark.</p>
+      </div>
+      <div class="battle">
+        <div class="battle-copy">
+          <div class="cmd"><span class="p">$ </span>zag run opencode \
+    --model codex-oauth/gpt-5.6-sol \
+    --battle openrouter/openai/gpt-5.6-sol</div>
+          <p>Work as usual. Every request the agent makes to its model also goes, at the same moment, to the challenger. The agent gets only its own model's answer; the challenger's answer is timed and thrown away.</p>
+        </div>
+        <div class="battle-copy">
+          <p>For every turn zag records <strong>time to first token</strong>, total time, output speed and errors for both sides, and sums them up as medians, p90s and wins. The records hold numbers only, never prompt or answer text.</p>
+          <p>Below is a real battle: OpenCode reading two Go files and explaining them, with GPT-5.6 Sol through a ChatGPT plan against the same model through OpenRouter. OpenRouter sent its first token sooner on all three turns.</p>
+        </div>
+      </div>
+      <div class="shot battle-shot">
+        <picture>
+          <source type="image/webp" srcset="assets/battle-1200.webp 1200w, assets/battle-2000.webp 2000w" sizes="(max-width: 1120px) 100vw, 1088px">
+          <img src="assets/battle-1200.jpg" width="1200" height="912" loading="lazy" alt="The Battles tab after a three-turn battle between codex-oauth/gpt-5.6-sol and openrouter/openai/gpt-5.6-sol. The two answers to the last turn sit side by side, with the challenger's differing words highlighted. A table lists each turn's first-token and total times; the challenger won first token on all three turns.">
+        </picture>
+      </div>
+      <figure class="term">
+        <div class="term-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+        <pre><span class="p">$ </span>zag battles show 20261020-130631-opencode
+battle 20261020-130631-opencode: opencode, 3 turns, 3 answered by both
+
+            MODEL                          FIRST TOKEN p50/p90  TOTAL p50/p90       TOKENS/S  WINS
+primary     codex-oauth/gpt-5.6-sol        3757 ms / 7097 ms    4212 ms / 10475 ms  130.3     0 first, 1 total
+challenger  openrouter/openai/gpt-5.6-sol  <b>3100 ms</b> / 5856 ms    3295 ms / 11481 ms  239.4     3 first, 2 total
+
+TURN  PRIMARY FIRST  TOTAL     CHALLENGER FIRST  TOTAL
+1     3647 ms        4212 ms   2228 ms           2370 ms
+2     3757 ms        3956 ms   3100 ms           3295 ms
+3     7097 ms        10475 ms  5856 ms           11481 ms</pre>
+        <figcaption>The same battle in the terminal, measured on 20 October 2026. Three turns is a small sample: OpenRouter won first token every time, but on the longest answer the ChatGPT plan finished a second sooner. Run a battle over a working session to see which holds for your work.</figcaption>
+      </figure>
+      <div class="battle-notes">
+        <div class="note">
+          <h3>One model, many names</h3>
+          <p>zag matches a model across providers' names, so <code>codex-oauth/gpt-5.6-sol</code>, <code>openrouter/openai/gpt-5.6-sol</code> and <code>bedrock_mantle/openai.gpt-5.6-sol</code> are the same contender. <code>zag models --agent pa</code> lists what each provider can serve, and a battle that cannot run is refused before the agent starts.</p>
+        </div>
+        <div class="note">
+          <h3>Watch the race</h3>
+          <p>The <strong>Battles</strong> tab streams both answers side by side while the battle runs, shows a highlighted diff between the responses from each model, and charts first token and total time for each turn. In the menu bar app, pick the two models from menus and copy the command.</p>
+        </div>
+        <div class="note">
+          <h3>Fair by construction</h3>
+          <p>Both sides get the same request at the same moment and are measured by the same meter, whether the provider speaks Chat Completions, Responses or Anthropic Messages. Both are billed, so a battle costs two answers per turn.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band dots" id="features" aria-labelledby="features-title">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="label">Features</span>
+        <h2 class="print" id="features-title">For the person running five agents at once</h2>
+        <p>Each agent has its own idea of where to send a request and what it costs. zag gives them one door, and gives you one place to look.</p>
+      </div>
+      <div class="features">
+        <div class="feature">
+          <h3>One command per agent</h3>
+          <p><strong><code>zag run claude</code></strong>, <code>codex</code>, <code>opencode</code>, <code>pa</code> or <code>pi</code> points that agent at the gateway, gives it a virtual key with a monthly budget ($50 unless you set another), and starts it. <code>--dry-run</code> prints the plan, with the key hidden, and starts nothing.</p>
+        </div>
+        <div class="feature">
+          <h3>Use the accounts you already have</h3>
+          <p><code>zag login claude</code> and <code>zag login codex</code> reuse the sign-in Claude Code and Codex already hold; zag reads those tokens and never writes them. OpenRouter keys go in the macOS keychain, Bedrock uses your AWS profile, Posit AI Pass signs in through the browser, and Ollama needs nothing.</p>
+        </div>
+        <div class="feature">
+          <h3>Rules you can read</h3>
+          <p>A rules document is a short JSON list. The first enabled rule that matches by <strong>agent, project, provider, model, hour, prompt size, pattern or a recent refusal</strong> wins, and it routes, rejects, tags or decides. A new version takes effect on the next request, with no restart. Build rules by hand or in the rules UI.</p>
+        </div>
+        <div class="feature">
+          <h3>Let a small model choose</h3>
+          <p>A <strong>decide</strong> rule lists two to eight routes, each with a sentence that says which requests suit it. A local model on Ollama reads the end of the prompt and picks one. If it is slow or unsure, the request takes the fallback route.</p>
+        </div>
+        <div class="feature">
+          <h3>Try a change on yesterday's traffic</h3>
+          <p><strong>Preview</strong> replays a draft over the requests the gateway stored and shows what each rule would have done. Every activation is a numbered version with a note, and <code>zag rules rollback</code> brings an old one forward.</p>
+        </div>
+        <div class="feature">
+          <h3>Route by project</h3>
+          <p>Put a <code>.zag.json</code> in a repository to name the project and pick a model for each agent there. Its requests carry the project's name, rules match on it, and the Traffic tab splits spend by it. One client's work can go to Bedrock while another's goes to Posit.</p>
+        </div>
+        <div class="feature">
+          <h3>Budgets that stop spending</h3>
+          <p>Each agent's key has a monthly limit. When an agent reaches it, the gateway refuses its requests until the month resets. <code>zag agents</code> and the menu bar app show how close each agent is.</p>
+        </div>
+        <div class="feature">
+          <h3>Guard rails on by default</h3>
+          <p>A prompt that carries an AWS key, a GitHub token, an Anthropic key or a private key is blocked. A sudden spike or a burst of repeats marks a request as suspicious and sends it to a route you choose. The hooks spot a refusal in the reply, and rules can act on it next time.</p>
+        </div>
+        <div class="feature">
+          <h3>Your Claude subscription stays with Claude Code</h3>
+          <p>Anthropic allows a Claude Pro or Max subscription only in Claude Code, so zag holds to that in three places: <code>zag run</code> will not start another agent on it, the router refuses every other key, and the proxy refuses a request that does not open the way Claude Code's do.</p>
+        </div>
+        <div class="feature">
+          <h3>Know where the money went</h3>
+          <p>The <strong>Traffic</strong> tab shows requests, cost, p50 and p95 latency, refusals and flags, split by agent, project, provider, model or rule, over an hour to thirty days. <code>zag agents</code> prints each key's spend against its budget.</p>
+        </div>
+        <div class="feature">
+          <h3>A menu bar app, if you want one</h3>
+          <p><strong>Zag.app</strong> starts and stops the gateway, signs in to every account, shows each agent's spend against its budget, and copies the command that starts it. It carries its own zag, is signed and notarized, and updates itself with Sparkle.</p>
+        </div>
+        <div class="feature">
+          <h3>Says what is wrong</h3>
+          <p><code>zag doctor</code> checks the install, the accounts and the rules, and names the command that fixes each problem. <code>zag models</code> lists what each provider serves, and why a provider is missing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="measured" aria-labelledby="measured-title">
+    <div class="wrap measured">
+      <div class="copy">
+        <span class="label">Measured</span>
+        <h2 class="print" id="measured-title">A decision in under a second</h2>
+        <p>Asking a model which route fits costs time on every request. On this Mac, the 9B <code>nimble</code> model on Ollama took about 450 ms plus 0.35 ms for each character of prompt it read.</p>
+        <p>So zag sends only the last 1,000 characters and waits at most 1.2 seconds. Four real coding requests with 20,000-character prompts were each decided in 650 to 743 ms, with confidence from 0.85 to 0.99.</p>
+      </div>
+      <figure class="chart">
+        <svg viewBox="0 0 640 300" role="img" aria-labelledby="chart-title chart-desc">
+          <title id="chart-title">Decision time against prompt characters read</title>
+          <desc id="chart-desc">A line from 450 ms at zero characters to about 1,880 ms at 4,096 characters. A dashed deadline at 1,200 ms. zag reads 1,000 characters, where the line is at about 800 ms. Four measured decisions sit at 1,000 characters between 650 and 743 ms.</desc>
+          <!-- x = 70 + chars * 0.13; y = 250 - ms * 0.1 -->
+          <rect class="cut" x="70" y="30" width="130" height="220"></rect>
+          <g font-size="11">
+            <line class="grid" x1="70" y1="50" x2="620" y2="50"></line><text x="62" y="54" text-anchor="end">2,000</text>
+            <line class="grid" x1="70" y1="100" x2="620" y2="100"></line><text x="62" y="104" text-anchor="end">1,500</text>
+            <line class="grid" x1="70" y1="150" x2="620" y2="150"></line><text x="62" y="154" text-anchor="end">1,000</text>
+            <line class="grid" x1="70" y1="200" x2="620" y2="200"></line><text x="62" y="204" text-anchor="end">500</text>
+            <text x="62" y="254" text-anchor="end">0 ms</text>
+          </g>
+          <line class="axis" x1="70" y1="250" x2="620" y2="250"></line>
+          <g font-size="11" text-anchor="middle">
+            <line class="axis" x1="70" y1="250" x2="70" y2="255"></line><text x="70" y="270">0</text>
+            <line class="axis" x1="200" y1="250" x2="200" y2="255"></line><text x="200" y="270">1,000</text>
+            <line class="axis" x1="330" y1="250" x2="330" y2="255"></line><text x="330" y="270">2,000</text>
+            <line class="axis" x1="460" y1="250" x2="460" y2="255"></line><text x="460" y="270">3,000</text>
+            <line class="axis" x1="590" y1="250" x2="590" y2="255"></line><text x="590" y="270">4,000</text>
+          </g>
+          <text x="345" y="292" font-size="11" text-anchor="middle">prompt characters the model reads</text>
+
+          <line class="deadline" x1="70" y1="130" x2="620" y2="130"></line>
+          <text class="strong" x="616" y="147" font-size="11" text-anchor="end">deadline 1.2 s, then the fallback route</text>
+
+          <line class="cost" x1="70" y1="205" x2="602.5" y2="61.6"></line>
+          <text class="strong" x="470" y="80" font-size="11" text-anchor="end">≈ 450 ms + 0.35 ms per character</text>
+
+          <text class="strong" x="135" y="44" font-size="11" text-anchor="middle">zag reads 1,000</text>
+
+          <circle class="real" cx="196" cy="175.7" r="5"></circle>
+          <circle class="real" cx="204" cy="185" r="5"></circle>
+          <circle class="real" cx="196" cy="185" r="5"></circle>
+          <circle class="real" cx="200" cy="181.7" r="5"></circle>
+          <text x="214" y="196" font-size="11">4 real decisions</text>
+        </svg>
+        <figcaption class="chart-note">Ollama 0.35.0 with the model loaded. A model that Ollama has unloaded takes seconds to load, so that request takes the fallback route and is tagged <code>decide.error=timeout</code>.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="band dots" id="design" aria-labelledby="design-title">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="label">Technical design</span>
+        <h2 class="print" id="design-title">How zag is built</h2>
+        <p>zag is a Go program with a Python hooks host beside it and a SwiftUI app on top. These are the choices that shape it.</p>
+      </div>
+      <div class="design">
+        <div class="note">
+          <h3>One binary, its hooks inside</h3>
+          <p>The <code>zag</code> file carries the hooks host's Python project. When <code>zag serve</code> starts, it writes that project to <code>~/.zag/runtime/&lt;digest&gt;/</code> and <code>uv</code> builds the environment, so a gateway always runs the hooks its own build was tested with.</p>
+        </div>
+        <div class="note">
+          <h3>A router of its own</h3>
+          <p>The gateway is a Go module with a ports-and-adapters layout, run inside <code>zag serve</code>'s process. The core imports only the standard library and its ports; adapters never import each other, and a test enforces it. It builds without cgo for macOS, Linux and Windows, so another program can embed it with adapters of its own.</p>
+        </div>
+        <div class="note">
+          <h3>Bytes you did not touch stay the same</h3>
+          <p>The router parses a body into an ordered JSON document. A field that no hook and no translation changed goes to the provider byte for byte, so a provider's newest options pass through before zag knows their names.</p>
+        </div>
+        <div class="note">
+          <h3>Translation that refuses to guess</h3>
+          <p>Each provider lists the protocols it accepts. When the agent speaks another one, the router translates the request and the reply, whole or chunk by chunk: Chat Completions to the Responses API or to Anthropic Messages, Responses to chat, and OpenAI Decisions to Ollama System One and back. A field it cannot carry faithfully gets a 400 that names it, never a silent drop. Property tests check that a stream translated chunk by chunk equals the whole reply translated at once.</p>
+        </div>
+        <div class="note">
+          <h3>Hooks in the LiteLLM shape</h3>
+          <p>Handlers are Python <code>CustomLogger</code> methods that run before and after a call, with their own time limits: 2 seconds before, 3 after. A slow or broken hook lets the request through and tags it, rather than failing it. The rules engine, the abuse classifier and the refusal detector are hooks too, and a handler of your own sits beside them in <code>~/.zag/hooks</code>. Hooks see a fingerprint of the key, never the key.</p>
+        </div>
+        <div class="note">
+          <h3>One small database</h3>
+          <p>Keys, budgets, the request log and every rule decision live in one SQLite file, written by a single goroutine through a bounded queue: if the disk falls behind, zag counts the dropped rows rather than holding up a request. Costs come from a price table built into the binary.</p>
+        </div>
+        <div class="note">
+          <h3>A live feed with no text in it</h3>
+          <p>The router reports each attempt, chunk and finish to an observer port. A hub in the serve process sends at most four updates a second for each request to the Live tab, and drops a viewer that falls behind instead of waiting for it. No event carries prompt or reply text, and a test holds the pipeline to that.</p>
+        </div>
+        <div class="note">
+          <h3>Released on every merge</h3>
+          <p>Each push to main is a release candidate. Conventional commits set the version; a Mac runner builds the CLI, signs, notarizes and staples the app, writes a Sparkle appcast with delta updates, and checks that every download link resolves before it publishes the feed. That is 51 releases in five weeks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="support" aria-labelledby="support-title">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="label">Agents and accounts</span>
+        <h2 class="print" id="support-title">What zag works with today</h2>
+      </div>
+      <div class="tables">
+        <div class="table-wrap">
+          <table>
+            <caption>Agents</caption>
+            <thead><tr><th scope="col">Command</th><th scope="col">Agent</th><th scope="col">How zag sets it up</th></tr></thead>
+            <tbody>
+              <tr><td>zag run claude</td><td>Claude Code</td><td>Gateway address, virtual key, and agent and project headers in its environment</td></tr>
+              <tr><td>zag run codex</td><td>OpenAI Codex CLI</td><td>A <code>zag</code> provider table in Codex's own config, on the Responses API; the rest of the file is left alone</td></tr>
+              <tr><td>zag run opencode</td><td>OpenCode</td><td>A <code>zag</code> provider in a config file zag writes for it</td></tr>
+              <tr><td>zag run pa</td><td>Posit Assistant</td><td>Provider settings and a pinned model at launch; <code>zag install pa</code> installs it</td></tr>
+              <tr><td>zag run pi</td><td>pi</td><td>A <code>zag</code> provider in pi's <code>models.json</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <caption>Accounts</caption>
+            <thead><tr><th scope="col">Login</th><th scope="col">What it reaches</th><th scope="col">Where the secret stays</th></tr></thead>
+            <tbody>
+              <tr><td>claude</td><td>Your Claude Pro or Max subscription, for Claude Code only</td><td>Claude Code's own sign-in; zag reads it and never writes it</td></tr>
+              <tr><td>codex</td><td>OpenAI models through your ChatGPT plan</td><td>Codex's own sign-in; zag reads it and never writes it</td></tr>
+              <tr><td>openrouter</td><td>Every model OpenRouter serves</td><td>The macOS keychain</td></tr>
+              <tr><td>bedrock</td><td>Amazon Bedrock models, including OpenAI models on Bedrock</td><td>Nothing stored: your AWS profile and region</td></tr>
+              <tr><td>ollama</td><td>Models on this Mac, and the model behind decide rules</td><td>No secret</td></tr>
+              <tr><td>posit</td><td>Anthropic and OpenAI models through Posit AI Pass</td><td>A file in <code>~/.zag</code> that only you can read</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band dots" id="install" aria-labelledby="install-title">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="label">Install</span>
+        <h2 class="print" id="install-title">Four commands to the first request</h2>
+        <p>Get the menu bar app, which brings the command-line tool with it, or the command-line tool alone, from the latest release.</p>
+      </div>
+      <div class="install">
+        <div class="os">
+          <h3>The menu bar app</h3>
+          <ol>
+            <li>Download <code>Zag-&lt;version&gt;.zip</code> and move <strong>Zag.app</strong> to Applications.</li>
+            <li>Open it, and let it link its <code>zag</code> command into <code>/usr/local/bin</code>.</li>
+            <li>Click <strong>Set up Zag</strong>, then <strong>Start</strong>, and sign in under <strong>Accounts</strong>.</li>
+            <li>Copy the command for an agent and run it in a terminal.</li>
+          </ol>
+          <a class="btn btn-primary" href="https://github.com/kindlyops/zag-releases/releases/latest" style="justify-self: start;">Download Zag.app</a>
+        </div>
+        <div class="os">
+          <h3>The command-line tool alone</h3>
+          <ol>
+            <li>Download <code>zag-darwin-arm64</code>, rename it <strong>zag</strong>, make it executable, and put it on your <code>PATH</code>.</li>
+            <li>Write the defaults, start the gateway, sign in, and start an agent:</li>
+          </ol>
+          <div class="cmd"><span class="p">$ </span>zag init
+<span class="p">$ </span>zag serve --detach
+<span class="p">$ </span>zag login claude
+<span class="p">$ </span>zag run claude</div>
+          <a class="btn btn-ghost" href="https://github.com/kindlyops/zag-releases/releases/latest" style="justify-self: start;">Download zag</a>
+        </div>
+      </div>
+      <p class="under">Each release has a <code>SHA256SUMS</code> file. In the download folder, <code>shasum -a 256 -c SHA256SUMS --ignore-missing</code> must print <code>OK</code> for each file. Something not working? <a href="https://github.com/kindlyops/zag-releases/issues">Tell us in an issue</a>.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>zag is made by Kindly Ops.</span>
+    <nav aria-label="Links">
+      <a href="https://github.com/kindlyops/zag-releases/releases">Releases</a>
+      <a href="https://github.com/kindlyops/zag-releases/issues">Issues</a>
+      <a href="#design">Technical design</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
